@@ -1,9 +1,16 @@
-var redColor = 100
-var greenColor = 100
-var blueColor = 100
+var redColor = 255
+var greenColor = 255
+var blueColor = 0
+var rchange = 0
+var gchange = 0
+var bchange = 0
 var x = 50
 var y = 50
-var i = 0
+var xchange = 0
+var ychange = 0
+var i = 1
+var L = 30
+
 function setup() {
   createCanvas(640,360);
 }
@@ -11,6 +18,10 @@ function setup() {
 function draw() {
 
   i++;
+  rchange = 0;
+  gchange = 0;
+  bchange = 0;
+
 
   // Background with Border
 
@@ -35,8 +46,8 @@ text('PAC-MAN & other things',10,20)
 
 // **Shapes**
 
-fill('#FF0073');
-rect(70, 218, 300, 20);
+fill(255+rchange,0+gchange,115+bchange);
+rect(70+xchange, 218+ychange, 300, 20);
 
 // Ghost
 
@@ -57,11 +68,9 @@ circle(349,195,18);
 
 fill('#1DA377');
 quad(500,10,570,50,500,220,430,50);
+
 fill('#96F01F');
 quad(500,20,560,50,500,200,440,50);
-
-//fill(255);
-//line(500, 225, 85, 75);
 
 fill('#07F0A3');
 triangle(500,230,460,300,540,300);
@@ -73,10 +82,10 @@ ellipse(130, 180, 100, 20);
 // Pac Man
 
 push();
-fill(255,255,0);
+fill(redColor,greenColor,blueColor);
 translate(100,100);
 rotate(PI / 5.0);
-arc(50, 50, 80, 80, 0, PI + HALF_PI);
+arc(x, y, 80, 80, 0, PI + HALF_PI);
 pop();
 
 fill(0);
@@ -100,5 +109,87 @@ circle(242,165,20);
 fill(255);
 circle(275,165,30);
 
+
+// WEEK 2 IF STATEMENTS
+
+// Color Management
+
+if (redColor > 255)
+  {
+    redcolor = 100;
+  }
+
+  if (greenColor > 255)
+  {
+    greenColor = 100;
+  }
+
+  if (blueColor > 255)
+  {
+    blueColor = 100;
+  }
+
+
+
+// Trigger Random Event
+
+if(i > L)
+{
+  i = 1;
+}
+else if(i == L)
+{
+  randomizePOS();
+  randomColor();
+}
+
+//print(x);
+
+// Functions
+
+function randomizePOS() 
+{
+  // Position Management
+
+if ((x > 540) || (x < -100))
+{
+  x = 100;
+}
+
+if ((y > 260) || (y < -100))
+{
+  y = 50;
+}
+
+// Movement
+
+  x+=random(70);
+  x-=random(70);
+  y+=random(70);
+  y-=random(70);
+
+  xchange+=random(50);
+  xchange-=random(50);
+  ychange+=random(50);
+  ychange-=random(50);
+}
+
+
+function randomColor() 
+{
+  redColor+=random(100);
+  //redColor-=random(100);
+  greenColor+=random(100);
+  //greenColor-=random(100);
+  blueColor+=random(100);
+  //blueColor-=random(100);
+
+  rchange+=random(5);
+  rchange-=random(5);
+  gchange+=random(5);
+  gchange-=random(5);
+  bchange+=random(5);
+  bchange-=random(5);
+}
 
 }
