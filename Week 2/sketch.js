@@ -1,195 +1,198 @@
-var redColor = 255
-var greenColor = 255
-var blueColor = 0
-var rchange = 0
-var gchange = 0
-var bchange = 0
-var x = 50
-var y = 50
-var xchange = 0
-var ychange = 0
-var i = 1
-var L = 30
+var i = 0
+var frameLimit = 1000
+var spot = {
+  x: 70,
+  x2:312 ,
+  x3:324 ,
+  x4:337 ,
+  x5:323 ,
+  x6:500 ,
+  x7:130 ,
+  x8:0 ,
+  x9:100 ,
+  x10:275,
+  y: 218,
+  y2:140 ,
+  y3:160 ,
+  y4:160,
+  y5:195,
+  y6:50 ,
+  y7:230 ,
+  y8:180 ,
+  y9:0,
+  y10:145
+}
+var col = {
+  r:255,
+  g:0,
+  b:210,
+  r2:0,
+  g2:200,
+  b2:255,
+  r3:0,
+  g3:200,
+  b3:255,
+  a: 0,
+  a2: 0,
+  a3: 255,
+  r4:0,
+  g4:255,
+  b4:50,
+  r5:0,
+  g5:255,
+  b5:50,
+  r6:0,
+  g6:255,
+  b6:50,
+  r7:0,
+  g7:255,
+  b7:50,
+  r8:0,
+  g8:255,
+  b8:50
+}
+
+
+
+
 
 function setup() {
   createCanvas(640,360);
+  // Lower Right-Hand Text (Name)
+  fill(255);
+  textSize(16);
+  text('Thomas Keith',532,350);
+
+  // Upper Left-Hand (Title)
+  fill(255);
+  textSize(16);
+  text('PAC-MAN & other things',10,20)
 }
 
 function draw() {
+// Background with Border
+fill(0);
+background('#FF0073');
+rect(5,5,630,350); 
 
-  i++;
-  rchange = 0;
-  gchange = 0;
-  bchange = 0;
+reset();
+i++;
+print(i);
 
-
-  // Background with Border
-
-  fill(0);
-  background('#FF0073');
-  rect(5,5,630,350); 
-
-
-// Lower Right-Hand Text (Name)
-
-fill(255);
-textSize(16);
-text('Thomas Keith',532,350);
-
-
-// Upper Left-Hand (Title)
-
-fill(255);
-textSize(16);
-text('PAC-MAN & other things',10,20)
-
+if (i==frameLimit)
+{
+  spot.x = random(0,width);
+  spot.x2 = random(0,width);
+  spot.x3 = random(0,width);
+  spot.x4 = random(0,width);
+  spot.x5 = random(0,width);
+  spot.x6 = random(0,width);
+  spot.x7 = random(0,width);
+  spot.x8 = random(0,width);
+  spot.x9 = random(0,width);
+  spot.x10 = random(0,width);
+  spot.y = random(0,height);
+  spot.y2 = random(0,height);
+  spot.y3 = random(0,height);
+  spot.y4 = random(0,height);
+  spot.y5 = random(0,height);
+  spot.y6 = random(0,height);
+  spot.y7 = random(0,height);
+  spot.y8 = random(0,height);
+  spot.y9 = random(0,height);
+  spot.y10 = random(0,height);
+  spot.y11 = random(0,height);
+  spot.y12 = random(0,height);
+  spot.y13 = random(0,height);
+  spot.y14 = random(0,height);
+  col.r = random(255);
+  col.g = random(255);
+  col.b = random(255);
+  col.r2 = random(255);
+  col.g2 = random(255);
+  col.b2 = random(255);
+  col.r3 = random(255);
+  col.g3 = random(255);
+  col.b3 = random(255);
+  col.a = random(255);
+  col.a2 = random(255);
+  col.a3 = random(255);
+  col.r4 = random(255);
+  col.g4 = random(255);
+  col.b4 = random(255);
+  col.r5 = random(255);
+  col.g5 = random(255);
+  col.b5 = random(255);
+  col.r6 = random(255);
+  col.g6 = random(255);
+  col.b6 = random(255);
+  col.r7 = random(255);
+  col.g7 = random(255);
+  col.b7 = random(255);
+  col.r8 = random(255);
+  col.g8 = random(255);
+  col.b8 = random(255);
+  col.r9 = random(255);
+  col.g9 = random(255);
+  col.b9 = random(255);
+  col.r10 = random(255);
+  col.g10 = random(255);
+  col.b10 = random(255);
+}
 
 // **Shapes**
+fill(col.r,col.g,col.b);
+rect(spot.x, spot.y, 300, 20);
 
-fill(255+rchange,0+gchange,115+bchange);
-rect(70+xchange, 218+ychange, 300, 20);
-
-// Ghost
-
-// body
-fill('#04FFE3');
-rect(312, 140, 55, 55, 20, 15, 10, 5);
-fill(0);
-circle(324,160,7);
-circle(337,160,7);
+// Ghost body
+fill(col.r2,col.g2,col.b2);
+rect(spot.x2, spot.y2, 55, 55, 20, 15, 10, 5);
+fill(col.a);
+circle(spot.x3,spot.y3,7);
+circle(spot.x4,spot.y4,7);
 
 // legs?
-
-fill('#04FFE3');
+fill(col.r3,col.g3,col.b3);
 noStroke();
-circle(323,195,18);
-circle(349,195,18);
+circle(spot.x5,spot.y5,18);
+circle(spot.x5+26,spot.y5,18);
 
+// TRIANGLES
+fill(col.r4,col.g4,col.b4);
+quad(spot.x6,10,570,spot.y6,500,220,430,50);
+fill(col.r5,col.g5,col.b5);
+quad(spot.x6,20,560,spot.y6,500,200,440,50);
 
-fill('#1DA377');
-quad(500,10,570,50,500,220,430,50);
+fill(col.r6,col.g6,col.b6);
+triangle(spot.x6,spot.y7,460,300,540,300);
 
-fill('#96F01F');
-quad(500,20,560,50,500,200,440,50);
-
-fill('#07F0A3');
-triangle(500,230,460,300,540,300);
-
-fill('#FF0073');
-ellipse(130, 180, 100, 20);
+fill(col.r7,col.g7,col.b7);
+ellipse(spot.x7, spot.y8, 100, 20);
 
 
 // Pac Man
-
 push();
-fill(redColor,greenColor,blueColor);
-translate(100,100);
+fill(col.r8,col.g8,col.b8);
+translate(spot.x8+100,spot.x9+100);
 rotate(PI / 5.0);
-arc(x, y, 80, 80, 0, PI + HALF_PI);
+arc(50, 50, 80, 80, 0, PI + HALF_PI);
 pop();
-
-fill(0);
-circle(100,145,9);
+fill(col.a2);
+circle(spot.x9,spot.x10,9);
 
 
 // Dots (for pac man)
-
-fill(10);
-circle(160,165,5);
-fill(20);
-circle(175,165,7.5);
-fill(30);
-circle(190,165,10);
-fill(40);
-circle(203,165,11);
-fill(50);
-circle(220,165,15);
-fill(70);
-circle(242,165,20);
-fill(255);
-circle(275,165,30);
+fill(col.a3);
+circle(spot.x10,165,30);
 
 
-// WEEK 2 IF STATEMENTS
-
-// Color Management
-
-if (redColor > 255)
+// FUNCTIONS
+function reset()
+{
+  if(i > frameLimit)
   {
-    redcolor = 100;
+    i = 1;
   }
-
-  if (greenColor > 255)
-  {
-    greenColor = 100;
-  }
-
-  if (blueColor > 255)
-  {
-    blueColor = 100;
-  }
-
-
-
-// Trigger Random Event
-
-if(i > L)
-{
-  i = 1;
-}
-else if(i == L)
-{
-  randomizePOS();
-  randomColor();
-}
-
-//print(x);
-
-// Functions
-
-function randomizePOS() 
-{
-  // Position Management
-
-if ((x > 540) || (x < -100))
-{
-  x = 100;
-}
-
-if ((y > 260) || (y < -100))
-{
-  y = 50;
-}
-
-// Movement
-
-  x+=random(70);
-  x-=random(70);
-  y+=random(70);
-  y-=random(70);
-
-  xchange+=random(50);
-  xchange-=random(50);
-  ychange+=random(50);
-  ychange-=random(50);
-}
-
-
-function randomColor() 
-{
-  redColor+=random(100);
-  //redColor-=random(100);
-  greenColor+=random(100);
-  //greenColor-=random(100);
-  blueColor+=random(100);
-  //blueColor-=random(100);
-
-  rchange+=random(5);
-  rchange-=random(5);
-  gchange+=random(5);
-  gchange-=random(5);
-  bchange+=random(5);
-  bchange-=random(5);
 }
 
 }
