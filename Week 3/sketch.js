@@ -78,6 +78,17 @@ function preload(){
 function setup() {
   createCanvas(640,360);
   textFont(myFont);
+  function timerChange()
+{
+  timerText++;
+  if (timerText % 5 == 0)
+  {
+    appleSpeed = random(10);
+    cherrySpeed = random(10);
+    orangeSpeedX = random(10);
+    orangeSpeedY = random(10);
+  }
+}
   setInterval(timerChange, 1000);
 }
 
@@ -247,16 +258,6 @@ function reset()
   }
 }
 
-function timerChange()
-{
-  timerText++;
-  if (timerText % 5 == 0)
-  {
-    appleSpeed = random(10);
-    cherrySpeed = random(10);
-    orangeSpeedX = random(10);
-    orangeSpeedY = random(10);
-  }
-}
+
 
 }
