@@ -54,53 +54,82 @@ var col = {
 var apple
 var appleX = 100
 var appleY = 100
-var donutSpeed = 2
-var cherries
+var appleSpeed = 2
+var cherry
 var cherryX = 100
 var cherryY = 100
 var cherrySpeed = 3
 var orange
 var orangeX = 100
 var orangeY = 100
-var orangeSpeed = 4
-
-var newFont
+var orangeSpeedX = 4
+var orangeSpeedY = 4
+var myFont
 var timerText = 0
 
 function preload(){
   apple = loadImage('assets/apple.png');
-  cherries = loadImage('assets/cherries.png');
+  cherry = loadImage('assets/cherry.png');
   orange = loadImage('assets/orange.png');
-  newfont = loadFont('assets/HachiMaruPop-Regular.ttf');
+  myFont = loadFont('assets/HachiMaruPop-Regular.ttf');
 
 }
 
 function setup() {
   createCanvas(640,360);
-  // Lower Right-Hand Text (Name)
-  fill(255);
-  textSize(16);
-  text('Thomas Keith',532,350);
-
-  // Upper Left-Hand (Title)
-  fill(255);
-  textSize(16);
-  text('PAC-MAN & other things',10,20)
+  textFont(myFont);
+  setInterval(timerChange, 1000);
 }
 
 function draw() {
 // Background with Border
 fill(0);
 background('#FF0073');
-rect(5,5,630,350); 
+rect(5,5,630,350);
+// Lower Right-Hand Text (Name)
+fill(255);
+textSize(16);
+text('Thomas Keith',500,350);
 
+// Upper Left-Hand (Title)
+fill(255);
+textSize(16);
+text('PAC-MAN & other things',10,20)
+
+// Timer Display
+text("Time:" + timerText, 100,100);
+
+// Images
 image(apple,appleX,appleY);
-image(cherries,cherryX,cherryY);
+image(cherry,cherryX,cherryY);
 image(orange,orangeX,orangeY);
 
+// Images MOVEMENT
+appleX+= appleSpeed;
+if ((appleX > width-48) || (appleX < -7))
+{
+  appleSpeed*= -1;
+}
+
+cherryY+= cherrySpeed;
+if ((cherryY > height-35) || (cherryY < 0))
+{
+  cherrySpeed*= -1;
+}
+
+orangeX+= orangeSpeedX;
+orangeY+= orangeSpeedY;
+if ((orangeX > width-55) || (orangeX < -5))
+{
+  orangeSpeedX*= -1;
+}
+if ((orangeY > height-35) || (orangeY < 0))
+{
+  orangeSpeedY*= -1;
+}
 reset();
 i++;
-print(i);
+print(appleSpeed);
 
 if (i==frameLimit)
 {
@@ -215,6 +244,18 @@ function reset()
   if(i > frameLimit)
   {
     i = 1;
+  }
+}
+
+function timerChange()
+{
+  timerText++;
+  if (timerText % 5 == 0)
+  {
+    appleSpeed = random(10);
+    cherrySpeed = random(10);
+    orangeSpeedX = random(10);
+    orangeSpeedY = random(10);
   }
 }
 
