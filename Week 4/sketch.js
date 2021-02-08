@@ -100,6 +100,7 @@ function setup(){
 function draw(){
 
   background(0);
+  
   if (keyIsPressed)
   {
     if (key === "w")
