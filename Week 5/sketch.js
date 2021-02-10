@@ -1,9 +1,13 @@
 var adventureGirl;
 var adventureGirlObjects = [];
 var adventureGirlRunObjects = [];
+var adventureGirlRunLObjects = [];
 var adventureGirlMeleeObjects = [];
+var obstacleObjects = [];
+var obstacles = [];
 var idleAnim = [];
 var runAnim = [];
+var runAnimL = [];
 var meleeAnim = [];
 var x = 0;
 var y = 0;
@@ -11,67 +15,78 @@ var run = 0;
 var idle = 0;
 var attack = 0;
 var speed = 10;
+var resultIdle;
+var resultRun;
+var resultRunL;
+var resultMelee;
+var resultObstacle;
 
 function preload(){
 
-  // Challenge Accepted
-
   // Idle assets
-  for (var i = 0; i < 9; i++)
-  {
-    adventureGirl = new character(`assets/adventure girl/Idle (${i+1}).png`,x,y);
-    adventureGirlObjects [i] = adventureGirl;
-  }
+  resultIdle = loadStrings('assets/adventure girl/characterIdle.txt');
 
   // Run assets
-  for (var i = 0; i < 7; i++)
-  {
-    adventureGirl = new character(`assets/adventure girl/Run (${i+1}).png`,x,y);
-    adventureGirlRunObjects [i] = adventureGirl;
-  }
+  resultRun = loadStrings('assets/adventure girl/characterRun.txt');
+  resultRunL = loadStrings('assets/adventure girl/characterRunL.txt');
 
-  //Melee assets
-  for (var i = 0; i < 6; i++)
-  {
-    adventureGirl = new character(`assets/adventure girl/Melee (${i+1}).png`,x,y);
-    adventureGirlMeleeObjects [i] = adventureGirl;
-  }
+  // Melee assets
+  resultMelee = loadStrings('assets/adventure girl/characterMelee.txt');
 
-  // Idle Array Load
-  for (var i = 0; i < adventureGirlObjects.length; i++)
-  {
-    idleAnim[i] = adventureGirlObjects[i].getImage();
-  }
-
-  // Run Array Load
-  for (var i = 0; i < adventureGirlRunObjects.length; i++)
-  {
-    runAnim[i] = adventureGirlRunObjects[i].getImage();
-  }
-
-  //Melee Array Load
-  for (var i = 0; i < adventureGirlMeleeObjects.length; i++)
-  {
-    meleeAnim[i] = adventureGirlMeleeObjects[i].getImage();
-  }
+  // Obstacle assets
+  resultObstacle = loadStrings('assets/obstacles/obstacle.txt');
 
 }
 
 function setup(){
   createCanvas(1200,800);
 
+  // IDLE ARRAY LOAD
+  for(var i = 0; i < resultIdle.length; i++)
+  {
+    adventureGirlObjects.push(new character('assets/adventure girl/' + resultIdle[i], 0, 0));
+    idleAnim[i] = adventureGirlObjects[i].getImage();
+  }
+
+  // RUN ARRAY LOAD
+  for(var i = 0; i < resultRun.length; i++)
+  {
+    adventureGirlRunObjects.push(new character('assets/adventure girl/' + resultRun[i], 0, 0));
+    runAnim[i] = adventureGirlRunObjects[i].getImage();
+  }
+  for(var i = 0; i < resultRunL.length; i++)
+  {
+    adventureGirlRunLObjects.push(new character('assets/adventure girl/' + resultRunL[i], 0, 0));
+    runAnimL[i] = adventureGirlRunLObjects[i].getImage();
+  }
+
+  // MELEE ARRAY LOAD
+  for(var i = 0; i < resultMelee.length; i++)
+  {
+    adventureGirlMeleeObjects.push(new character('assets/adventure girl/' + resultMelee[i], 0, 0));
+    meleeAnim[i] = adventureGirlMeleeObjects[i].getImage();
+  }
+
+  // OBSTACLE ARRAY LOAD
+  for(var i = 0; i < resultObstacle.length; i++)
+  {
+    obstacleObjects.push(new obstacle('assets/obstacles/' + resultObstacle[i],0,0));
+    obstacles[i] = obstacleObjects[i].getImage();
+  }
+
+  setInterval(incrementIdle,50);
+  setInterval(incrementRun,50);
+  setInterval(incrementAttack,50);
+
   //Increment Idle
   function incrementIdle()
   {
     idle++;
-
     if (idle >= idleAnim.length)
   {
     idle = 0;
   }
   }
-  setInterval(incrementIdle,50);
-
   //Increment Run
   function incrementRun()
   {
@@ -82,8 +97,6 @@ function setup(){
     run = 0;
   }
   }
-  setInterval(incrementRun,50);
-
   //Increment Melee
   function incrementAttack()
   {
@@ -94,12 +107,17 @@ function setup(){
     attack = 0;
   }
   }
-  setInterval(incrementAttack,50);
 }
 
 function draw(){
 
   background(0);
+  
+  // DRAW OBSTACLES
+  for (i = 0; i < 1; i++)
+  {
+    image(obstacles[i],500,100);
+  }
   
   if (keyIsPressed)
   {
@@ -115,7 +133,7 @@ function draw(){
     }
     if (key === "a")
     {
-      image(runAnim[run],x,y);
+      image(runAnimL[run],x,y);
       x-=speed;
     }
     if (key === "d")
