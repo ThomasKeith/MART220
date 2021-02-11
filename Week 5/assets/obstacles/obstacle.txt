@@ -4,3 +4,4 @@ Jelly (3).png
 Jelly (4).png
 Jelly (5).png
 Jelly (6).png
+snek.png

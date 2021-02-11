@@ -10,6 +10,7 @@ var idleAnimL = [];
 var runAnim = [];
 var runAnimL = [];
 var meleeAnim = [];
+var meleeAnimL= [];
 var x = 0;
 var y = 0;
 var run = 0;
@@ -68,16 +69,21 @@ function setup(){
   }
 
   // MELEE ARRAY LOAD
-  for(var i = 0; i < resultMelee.length; i++)
+  for(var i = 0; i < 7; i++)
   {
     adventureGirlMeleeObjects.push(new character('assets/adventure girl/' + resultMelee[i], 0, 0));
     meleeAnim[i] = adventureGirlMeleeObjects[i].getImage();
+  }
+  for(var i = 0; i < 7; i++)
+  {
+    adventureGirlMeleeObjects.push(new character('assets/adventure girl/' + resultMelee[i+7], 0, 0));
+    meleeAnimL[i] = adventureGirlMeleeObjects[i+7].getImage();
   }
 
   // OBSTACLE ARRAY LOAD
   for(var i = 0; i < resultObstacle.length; i++)
   {
-    obstacleObjects.push(new obstacle('assets/obstacles/' + resultObstacle[i],0,0));
+    obstacleObjects.push(new obstacle('assets/obstacles/' + resultObstacle[i],random(width),random(height)));
     obstacles[i] = obstacleObjects[i].getImage();
   }
 
@@ -114,6 +120,7 @@ function setup(){
     attack = 0;
   }
   }
+
 }
 
 function draw(){
@@ -121,22 +128,34 @@ function draw(){
   background(0);
   
   // DRAW OBSTACLES
-  /*for (i = 0; i < 1; i++)
-  {
-    image(obstacles[i],500,100);
-  }*/
+  for (var i = 0; i < obstacles.length; i++){
+    image(obstacles[i],obstacleObjects[i].getX(),obstacleObjects[i].getY());
+  }
   
+// WASD MOVEMENTS & ANIMATIONS
   if (keyIsPressed)
   {
     if (key === "w")
     {
-      image(runAnim[run],x,y);
-      y-=speed;
+      if (faceRight == true){
+        image(runAnim[run],x,y);
+        y-=speed;
+      }
+      else{
+        image(runAnimL[run],x,y);
+        y-=speed;
+      }
     }
     if (key === "s")
     {
-      image(runAnim[run],x,y);
-      y+=speed;
+      if (faceRight == true){
+        image(runAnim[run],x,y);
+        y+=speed;
+      }
+      else{
+        image(runAnimL[run],x,y);
+        y+=speed;
+      }
     }
     if (key === "a")
     {
@@ -152,7 +171,13 @@ function draw(){
     }
     if ((key === "x") || (keyCode === 32))
     {
-      image(meleeAnim[attack],x,y);
+      if (faceRight == true){
+        image(meleeAnim[attack],x,y);
+      }
+      else{
+        image(meleeAnimL[attack],x,y);
+      }
+      
     }
   }
   else
@@ -165,11 +190,5 @@ function draw(){
     }
     
   }
-  
-
-  
-  
- 
-  
 
 }
