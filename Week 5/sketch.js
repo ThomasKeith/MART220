@@ -6,6 +6,7 @@ var adventureGirlMeleeObjects = [];
 var obstacleObjects = [];
 var obstacles = [];
 var idleAnim = [];
+var idleAnimL = [];
 var runAnim = [];
 var runAnimL = [];
 var meleeAnim = [];
@@ -20,6 +21,7 @@ var resultRun;
 var resultRunL;
 var resultMelee;
 var resultObstacle;
+var faceRight = true;
 
 function preload(){
 
@@ -42,10 +44,15 @@ function setup(){
   createCanvas(1200,800);
 
   // IDLE ARRAY LOAD
-  for(var i = 0; i < resultIdle.length; i++)
+  for(var i = 0; i < 10; i++)
   {
     adventureGirlObjects.push(new character('assets/adventure girl/' + resultIdle[i], 0, 0));
     idleAnim[i] = adventureGirlObjects[i].getImage();
+  }
+  for(var i = 0; i < 10; i++)
+  {
+    adventureGirlObjects.push(new character('assets/adventure girl/' + resultIdle[i+10], 0, 0));
+    idleAnimL[i] = adventureGirlObjects[i+10].getImage();
   }
 
   // RUN ARRAY LOAD
@@ -114,10 +121,10 @@ function draw(){
   background(0);
   
   // DRAW OBSTACLES
-  for (i = 0; i < 1; i++)
+  /*for (i = 0; i < 1; i++)
   {
     image(obstacles[i],500,100);
-  }
+  }*/
   
   if (keyIsPressed)
   {
@@ -135,11 +142,13 @@ function draw(){
     {
       image(runAnimL[run],x,y);
       x-=speed;
+      faceRight = false;
     }
     if (key === "d")
     {
       image(runAnim[run],x,y);
       x+=speed;
+      faceRight = true;
     }
     if ((key === "x") || (keyCode === 32))
     {
@@ -148,7 +157,13 @@ function draw(){
   }
   else
   {
-    image(idleAnim[idle],x,y);
+    if (faceRight == true){
+      image(idleAnim[idle],x,y);
+    }
+    else{
+      image(idleAnimL[idle],x,y);
+    }
+    
   }
   
 

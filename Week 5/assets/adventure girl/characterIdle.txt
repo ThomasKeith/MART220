@@ -8,3 +8,13 @@ Idle (7).png
 Idle (8).png
 Idle (9).png
 Idle (10).png
+IdleL (1).png
+IdleL (2).png
+IdleL (3).png
+IdleL (4).png
+IdleL (5).png
+IdleL (6).png
+IdleL (7).png
+IdleL (8).png
+IdleL (9).png
+IdleL (10).png
