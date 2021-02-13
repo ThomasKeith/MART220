@@ -1,7 +1,4 @@
-Jelly (1).png
-Jelly (2).png
-Jelly (3).png
-Jelly (4).png
-Jelly (5).png
-Jelly (6).png
-snek.png
+snek 1.png
+snek 2.png
+snek 3.png
+snek 4.png

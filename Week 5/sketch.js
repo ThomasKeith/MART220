@@ -83,7 +83,7 @@ function setup(){
   // OBSTACLE ARRAY LOAD
   for(var i = 0; i < resultObstacle.length; i++)
   {
-    obstacleObjects.push(new obstacle('assets/obstacles/' + resultObstacle[i],random(width),random(height)));
+    obstacleObjects.push(new obstacle('assets/obstacles/' + resultObstacle[i],random(width-100),random(height-100)));
     obstacles[i] = obstacleObjects[i].getImage();
   }
 
@@ -140,8 +140,7 @@ function draw(){
       if (faceRight == true){
         image(runAnim[run],x,y);
         y-=speed;
-      }
-      else{
+      }else{
         image(runAnimL[run],x,y);
         y-=speed;
       }
@@ -151,8 +150,7 @@ function draw(){
       if (faceRight == true){
         image(runAnim[run],x,y);
         y+=speed;
-      }
-      else{
+      }else{
         image(runAnimL[run],x,y);
         y+=speed;
       }
@@ -173,22 +171,17 @@ function draw(){
     {
       if (faceRight == true){
         image(meleeAnim[attack],x,y);
-      }
-      else{
+      }else{
         image(meleeAnimL[attack],x,y);
       }
-      
     }
   }
   else
   {
     if (faceRight == true){
       image(idleAnim[idle],x,y);
-    }
-    else{
+    }else{
       image(idleAnimL[idle],x,y);
     }
-    
   }
-
 }
