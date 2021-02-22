@@ -1,0 +1,4 @@
+snek1.png
+snek2.png
+snek3.png
+snek4.png

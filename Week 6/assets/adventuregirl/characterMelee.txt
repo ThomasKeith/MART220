@@ -1,0 +1,14 @@
+assets/adventuregirl/Melee(1).png
+assets/adventuregirl/Melee(2).png
+assets/adventuregirl/Melee(3).png
+assets/adventuregirl/Melee(4).png
+assets/adventuregirl/Melee(5).png
+assets/adventuregirl/Melee(6).png
+assets/adventuregirl/Melee(7).png
+assets/adventuregirl/MeleeL(1).png
+assets/adventuregirl/MeleeL(2).png
+assets/adventuregirl/MeleeL(3).png
+assets/adventuregirl/MeleeL(4).png
+assets/adventuregirl/MeleeL(5).png
+assets/adventuregirl/MeleeL(6).png
+assets/adventuregirl/MeleeL(7).png
