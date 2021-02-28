@@ -1,0 +1,8 @@
+assets/adventuregirl/RunL1.png
+assets/adventuregirl/RunL2.png
+assets/adventuregirl/RunL3.png
+assets/adventuregirl/RunL4.png
+assets/adventuregirl/RunL5.png
+assets/adventuregirl/RunL6.png
+assets/adventuregirl/RunL7.png
+assets/adventuregirl/RunL8.png

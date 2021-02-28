@@ -1,0 +1,10 @@
+assets/adventuregirl/IdleL1.png
+assets/adventuregirl/IdleL2.png
+assets/adventuregirl/IdleL3.png
+assets/adventuregirl/IdleL4.png
+assets/adventuregirl/IdleL5.png
+assets/adventuregirl/IdleL6.png
+assets/adventuregirl/IdleL7.png
+assets/adventuregirl/IdleL8.png
+assets/adventuregirl/IdleL9.png
+assets/adventuregirl/IdleL10.png
