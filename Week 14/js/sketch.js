@@ -1,93 +1,69 @@
-let resultVideos = [];
-let resultValues = [];
-let myVideos = [];
-let vid;
-let button;
-let volumeUpButton;
-let volumeDownButton;
-let playing;
-let volume = 0.2;
-let volumeIncrement = 0.01;
-
-function preload() {
-    resultVideos = loadStrings('assets/myVideos.txt');
-    resultValues = loadStrings('assets/values.txt');
-}
-
 function setup() {
-
-    createCanvas(windowWidth, windowHeight);
-    background(50);
-
-    textSize(60);
-    text('Clips From Past Projects', 50, 70);
-    text('Thomas Keith', 50, 800);
-
-    for (let i = 0; i < 4; i++) {
-        myVideos.push(new videoClass(resultVideos[i], resultValues[i], resultValues[i], resultValues[i], resultValues[i]));
+    let img = createImage(800, 600);
+    img.loadPixels();
+    createCanvas(800, 600);
+    background(0);
+    for (let i = 0; i < img.width; i++) {
+        for (let j = 0; j < img.height; j++) {
+            img.set(i, j, color(255, 0, 180, (i % img.width) * .2));
+        }
     }
+    img.updatePixels();
+    image(img, 0, 0);
+    image(img, 50, 50);
+    image(img, 100, 100);
 
-    //myVideos.push(new videoClass('assets/02_A380_TAKEOFF.mp4', 300, 300, 300, 300));
-    //myVideos.push(new videoClass('assets/MVI_0048.mp4', 10, 10, 100, 100));
 
-
-    for (let i = 0; i < myVideos.length; i++) {
-        let tempVideo = createVideo([myVideos[i].theVideoPath]);
-        tempVideo.size(myVideos[i].theW, myVideos[i].theH);
-        tempVideo.position(myVideos[i].theX, myVideos[i].theY);
-        myVideos[i].setTheVideoObject(tempVideo);
-    }
-
-    button = createButton('play');
-    volumeUpButton = createButton('Volume Up');
-    volumeDownButton = createButton('Volume Down');
-    volumeUpButton.position(width / 2 + 50, height - 150);
-    volumeDownButton.position(width / 2 + 50, height - 125);
-    button.position(width / 2, height - 150);
-    button.mousePressed(playVideo);
-    volumeUpButton.mousePressed(louder);
-    volumeDownButton.mousePressed(softer);
-
-    function playVideo() {
-        if (playing) {
-            for (let i = 0; i < myVideos.length; i++) {
-                let temp = myVideos[i].theVideoObject;
-                temp.pause();
-                temp.volume(volume);
-            }
-            button.html('play');
-            playing = false;
-        } else {
-            for (let i = 0; i < myVideos.length; i++) {
-                let temp = myVideos[i].theVideoObject;
-                temp.loop();
-                temp.volume(volume);
-            }
-            button.html('pause');
-            playing = true;
+    let x, y;
+    // fill with random colors
+    for (y = 0; y < img.height; y++) {
+        for (x = 0; x < img.width; x++) {
+            let red = random(255);
+            let green = random(255);
+            let blue = random(255);
+            let alpha = 255;
+            writeColor(img, x, y, red, green, blue, alpha);
         }
     }
 
-    function louder() {
-        volume += 0.2;
-        if (volume >= 1) {
-            volume = 1;
-        }
-        for (let i = 0; i < myVideos.length; i++) {
-            let temp = myVideos[i].theVideoObject;
-            temp.volume(volume);
+    // draw upper border line
+    for (y = 0; y < 5; y++) {
+        for (x = 0; x < img.width; x++) {
+            writeColor(img, x, y, 255, 0, 0, 255);
         }
     }
 
-    function softer() {
-        volume -= 0.2;
-        if (volume <= 0) {
-            volume = 0;
-        }
+    // BORDER
 
-        for ( let i = 0; i < myVideos.length; i++) {
-            let temp = myVideos[i].theVideoObject;
-            temp.volume(volume);
+    // draw upper border line
+    for (y = 0; y < 5; y++) {
+        for (x = 0; x < img.width; x++) {
+            writeColor(img, x, y, 0, 0, 0, 255);
         }
     }
+
+    // draw a bottom border line
+    y = img.height - 1;
+    for (let i = 0; i < 5; i++) {
+        for (x = 0; x < img.width; x++) {
+            writeColor(img, x, y, 0, 0, 0, 255);
+        }
+        y--;
+    }
+
+
+
+
+
+
+
+
+    function writeColor(image, x, y, red, green, blue, alpha) {
+        let index = (x + y * width) * 4;
+        image.pixels[index] = red;
+        image.pixels[index + 1] = green;
+        image.pixels[index + 2] = blue;
+        image.pixels[index + 3] = alpha;
+    }
+
 }
